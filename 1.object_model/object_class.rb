@@ -8,7 +8,7 @@ class MyClass
     # このインスタンスメソッド内で@vというインスタンス変数を定義する
     # インスタンス変数はオブジェクトごとに固有
     # つまりnewするたびに増え、他のオブジェクトに影響されない
-    @v = 1
+    @v = 4
   end
 end
 
@@ -23,7 +23,7 @@ p MyClass.instance_methods # => [:my_method, :nil?, :===, :=~, :!~, :eql?, :hash
 # my_methodもちゃんと定義されているのがわかる
 p MyClass.instance_methods.grep(/my/) # => [:my_method]
 
-# MyClassのメソッドは？
+# MyClassのクラスメソッドは？
 # つまり
 # MyClass.hoge
 # とかけるものは？
@@ -34,54 +34,52 @@ p MyClass.allocate
 p MyClass.name
 p MyClass.constants
 p MyClass.dup
-p MyClass.my_method # => Ops!インスタンスメソッドはオブジェクトにしてからじゃないと呼べないねぇ
+# p MyClass.my_method # => Ops!もちろんエラー
 
 # newしてみる
+p my = MyClass.new # => #<MyClass:0x007f93538b8650>
+p my.my_method
+p my.methods
+# p my.instance_methods # => ERROR!
 
-
-puts
-puts
-puts
-puts
-puts
 puts
 
-# p MyClass.methods.grep(/my/)
-# puts
-# p MyClass.instance_methods.grep(/my/)
+p MyClass.methods.grep(/my/)
+puts
+p MyClass.instance_methods.grep(/my/)
 obj = MyClass.new
 p obj.class
 p obj.methods
 p MyClass.instance_methods
 p obj.methods == MyClass.instance_methods
-# p MyClass.methods
-# p obj.instance_variables
-# p obj.my_method
-# p obj.methods
-# p obj.instance_variables
-# p obj.methods.grep(/my/)
-# p String.instance_methods == "abc".methods
-# p String.methods == "abc".methods
-# p String.instance_methods
-# p String.methods
-# p MyClass.instance_methods
-# p MyClass.methods
-# p MyClass.class
-# p MyClass.superclass
-# p MyClass.methods == MyClass.class.instance_methods
-# p Class.instance_methods == MyClass.class.instance_methods
-# p "hello".class
-# p String.class
-# puts
-# inherited = false
-# p Class.instance_methods(inherited)
-# p String.superclass
-# p Object.superclass
-# p BasicObject.superclass
-# p Class.superclass
-# p Module.superclass
-# puts
-# p Module.methods
-# p Object.methods
-# p BasicObject.methods
-# p BasicObject.instance_methods
+p MyClass.methods
+p obj.instance_variables
+p obj.my_method
+p obj.methods
+p obj.instance_variables
+p obj.methods.grep(/my/)
+p String.instance_methods == "abc".methods
+p String.methods == "abc".methods
+p String.instance_methods
+p String.methods
+p MyClass.instance_methods
+p MyClass.methods
+p MyClass.class
+p MyClass.superclass
+p MyClass.methods == MyClass.class.instance_methods
+p Class.instance_methods == MyClass.class.instance_methods
+p "hello".class
+p String.class
+puts
+inherited = false
+p Class.instance_methods(inherited)
+p String.superclass
+p Object.superclass
+p BasicObject.superclass
+p Class.superclass
+p Module.superclass
+puts
+p Module.methods
+p Object.methods
+p BasicObject.methods
+p BasicObject.instance_methods
